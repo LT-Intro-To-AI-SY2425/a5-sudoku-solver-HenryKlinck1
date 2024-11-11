@@ -174,7 +174,9 @@ def BFS(state: Board) -> Board:
 
 if __name__ == "__main__":
     # uncomment the below lines once you've implemented the board class
-   
+    b = Board()
+    print(b)
+    b.print_pretty()
     # # CODE BELOW HERE RUNS YOUR BFS/DFS
     # print("<<<<<<<<<<<<<< Solving Sudoku >>>>>>>>>>>>>>")
 
