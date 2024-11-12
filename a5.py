@@ -57,8 +57,10 @@ class Board:
     def __str__(self) -> str:
         """String representation of the board"""
         row_str = ""
+        row_num = 0
         for r in self.rows:
-            row_str += f"{r}\n"
+            row_str += f"Row {row_num}{r}\n"
+            print(row_num)
 
         return f"num_nums_placed: {self.num_nums_placed}\nboard (rows): \n{row_str}"
 
@@ -139,8 +141,14 @@ class Board:
             column - index of the column to assign
             assignment - value to place at given row, column coordinate
         """
-        pass
+        self.rows[row][column] = assignment
 
+        for i in range(self.size):
+            remove_if_exists(self.rows[row][i], assignment)
+            remove_if_exists(self.rows[i][column], assignment)
+        print(self.subgrid_coordinates[row, column])
+        for i, j in self.subgrid_coordinates(row, column):
+            remove_if_exists(self.rows[i][j], assignment)
 
 def DFS(state: Board) -> Board:
     """Performs a depth first search. Takes a Board and attempts to assign values to
@@ -177,6 +185,18 @@ if __name__ == "__main__":
     b = Board()
     print(b)
     b.print_pretty()
+    b.update(0, 0, 1)
+    b.update[0, 2, 2]
+    b.update[1, 0, 9]
+    b.update[1, 1, 8]
+    b.update[1, 6, 4]
+    b.update[1, 8, 3]
+    print(b)
+    b.print_pretty()
+
+
+
+
     # # CODE BELOW HERE RUNS YOUR BFS/DFS
     # print("<<<<<<<<<<<<<< Solving Sudoku >>>>>>>>>>>>>>")
 
