@@ -108,7 +108,19 @@ class Board:
         Returns:
             a tuple of row, column index identifying the most constrained cell
         """
-        pass
+        mini = 9
+        row = 0
+        column = 0 
+        for i in range(self.size):
+            print()
+            for j in range(self.size):
+                cell = self.rows[i][j]
+                if isinstance(cell, list) and len(cell)< mini:
+                    mini = len(cell)
+                    row = i
+                    column = j
+                    print(row, column, mini)
+        return (row, column)
 
     def failure_test(self) -> bool:
         """Check if we've failed to correctly fill out the puzzle. If we find a cell
@@ -247,7 +259,7 @@ if __name__ == "__main__":
         (7, 5, 1),
         (7, 6, 9),
         (8, 1, 3),
-        #(8, 7, 8),
+        (8, 7, 8),
     ]
 
     # second_moves = [
@@ -321,6 +333,7 @@ if __name__ == "__main__":
         g.update(trip[0],trip[1],trip[2])
     print(g)
     g.print_pretty()
+    print(g.find_most_constrained_cell())
     # #From the above print statement, you can see which numbers
     # #  have been assigned to the board, and then create test
     # #  cases by looking at the board and listing what values are
